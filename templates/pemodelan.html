@@ -1,0 +1,102 @@
+{% include 'head.html' %}
+    <div class="">
+        {% include 'topbar.html' %}
+
+        <main>
+            <div>
+            <h1 class="text-3xl font-bold mb-4">Supervised Learning</h1>
+
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded inline-block mb-4" onclick="toggleList('classificationList')">
+                    Toggle Classification List
+                </button>
+
+                <ul id="classificationList" class="hidden">
+                    <li class="py-2 px-4 border-b">Decision Trees</li>
+                    <li class="py-2 px-4 border-b">Support Vector Machines</li>
+                    <li class="py-2 px-4 border-b">Random Forest</li>
+                    <!-- Add more classification algorithms as needed -->
+                </ul>
+
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded inline-block mb-4" onclick="toggleList('regressionList')">
+                    Toggle Regression List
+                </button>
+
+                <ul id="regressionList" class="hidden">
+                    <li class="py-2 px-4 border-b">Linear Regression</li>
+                    <li class="py-2 px-4 border-b">Polynomial Regression</li>
+                    <li class="py-2 px-4 border-b">Ridge Regression</li>
+                    <!-- Add more regression algorithms as needed -->
+                </ul>
+            </div>
+            <!-- Slider Container -->
+            <!-- Range Slider Container -->
+                <h1 class="text-xl">Split Data</h1>
+
+            <div class="w-64 bg-red-400">
+
+                <!-- Slider Track -->
+                <div class="h-2 bg-gray-300 rounded-full absolute w-full"></div>
+
+                <!-- Range Slider Thumbs -->
+                <div id="sliderThumbMin" class="h-6 w-6 bg-blue-500 rounded-full absolute top-1/2 transform -translate-y-1/2 cursor-pointer"></div>
+                <div id="sliderThumbMax" class="h-6 w-6 bg-blue-500 rounded-full absolute top-1/2 transform -translate-y-1/2 cursor-pointer"></div>
+
+            </div>
+
+        </main>
+
+    </div>
+</body>
+
+    <script>
+        function toggleList(listId) {
+            $("#" + listId).toggle();
+        }
+
+        // jQuery code for range slider functionality
+        $(document).ready(function() {
+            const sliderTrack = $('.h-2');
+            const sliderThumbMin = $('#sliderThumbMin');
+            const sliderThumbMax = $('#sliderThumbMax');
+            const sliderWidth = sliderTrack.width();
+            let isDraggingMin = false;
+            let isDraggingMax = false;
+
+            sliderThumbMin.on('mousedown', function(event) {
+                event.preventDefault();
+                isDraggingMin = true;
+                $(document).on('mousemove', handleMouseMoveMin);
+                $(document).on('mouseup', function() {
+                    isDraggingMin = false;
+                    $(document).off('mousemove', handleMouseMoveMin);
+                });
+            });
+
+            sliderThumbMax.on('mousedown', function(event) {
+                event.preventDefault();
+                isDraggingMax = true;
+                $(document).on('mousemove', handleMouseMoveMax);
+                $(document).on('mouseup', function() {
+                    isDraggingMax = false;
+                    $(document).off('mousemove', handleMouseMoveMax);
+                });
+            });
+
+            function handleMouseMoveMin(event) {
+                if (isDraggingMin) {
+                    const newPosition = Math.min(sliderThumbMax.offset().left, Math.max(0, event.pageX - sliderTrack.offset().left));
+                    const percentage = (newPosition / sliderWidth) * 100;
+                    sliderThumbMin.css('left', percentage + '%');
+                }
+            }
+
+            function handleMouseMoveMax(event) {
+                if (isDraggingMax) {
+                    const newPosition = Math.max(sliderThumbMin.offset().left, Math.min(sliderWidth, event.pageX - sliderTrack.offset().left));
+                    const percentage = (newPosition / sliderWidth) * 100;
+                    sliderThumbMax.css('left', percentage + '%');
+                }
+            }
+        });
+    </script>
+</html>

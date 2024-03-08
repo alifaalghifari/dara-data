@@ -1,0 +1,100 @@
+    
+        {% include 'head.html' %}
+        <!-- your_flask_project/app/templates/navbar.html -->
+        <div class="">
+        {% include 'topbar.html' %}
+
+        <main>
+            <div class="flex w-full">
+                <div class="w-1/5 mx-2 border-l border-2 p-2">
+                    <div class="mb-7 h-40">
+                        <div class="relative border-dashed border-2 border-gray-300 p-6 rounded-md h-full">
+                            <input type="file" name="file" accept=".csv" class="absolute inset-0 w-full h-full opacity-0" id="fileInput">
+                            <div class="flex flex-col items-center justify-center h-full">
+                                <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
+                                    <path d="M15 3a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h10zm0 0v14M3 13h18M12 16v-4" />
+                                </svg>
+                                <p class="text-base text-gray-400">Pilih file !</p>
+                            </div>
+                        </div>
+                        <div class="mt-4" id="fileNameDisplay"></div>
+                        
+                        <!-- <button class="w-auto p-2 rounded-md border-2 border-blue-300 text-lg" id="getHead">Read Data</button> -->
+                    </div>
+
+                    <div class="flex flex-col w-full gap-3 ">
+                        <div class="">
+                            <button id="creation" class=" text-gray-600 pt-2 rounded text-xl">Membuat dan Menginspeksi Data</button>
+                            <ul id="creationList" class=" mt-1 ml-2 text-gray-500 text-lg flex flex-col gap-2">
+                                <!-- DataFrame Creation and Information -->
+                                <li class="hover:cursor-pointer my-1 border border-gray-200 rounded-lg w-full p-1" id="dataCreate">`pd.DataFrame(data)`: Membuat dataframe.</li>
+                                <li class="hover:cursor-pointer my-1 border border-gray-200 rounded-lg w-full p-1" id="dataHead">`df.head(n)`: Menampilkan n baris pertama.</li>
+                                <li class="hover:cursor-pointer my-1 border border-gray-200 rounded-lg w-full p-1" id="dataTail">`df.tail(n)`: Menampilkan n baris terakhir.</li>
+                                <li class="hover:cursor-pointer my-1 border border-gray-200 rounded-lg w-full p-1" id="dataInfo">`df.info()`: Menampilkan Informasi Data Secara Ringas.</li>
+                            </ul>
+                        </div>
+
+                        <div class="">
+                            <button id="selection" class="text-gray-600 pt-2 rounded text-xl">Pemilihan Data dan Indexing</button>
+                            <ul id="selectionList" class="mt-1 ml-2 text-gray-500 text-lg flex flex-col gap-2">
+                                <li class="hover:cursor-pointer my-1 border border-gray-200 rounded-lg w-full p-1">`df['column_name']`: Select a single column.</li>
+                                <li class="hover:cursor-pointer my-1 border border-gray-200 rounded-lg w-full p-1">`df[['col1', 'col2']]`: Select multiple columns.</li>
+                                <li class="hover:cursor-pointer my-1 border border-gray-200 rounded-lg w-full p-1">`df.loc[row_label, col_label]`: Access a group of rows and columns by labels.</li>
+                                <li class="hover:cursor-pointer my-1 border border-gray-200 rounded-lg w-full p-1">`df.iloc[row_index, col_index]`: Access a group of rows and columns by integer position.</li>
+
+                                <!-- Add more list items as needed -->
+                            </ul>
+                        </div>
+                        
+                        <div class="">
+                            <button id="manipulation" class="text-gray-600 pt-2 rounded text-xl">Data Manipulatioin</button>
+                            <ul id="manipulationList" class="mt-1 ml-2 text-gray-500 text-lg flex flex-col gap-2">
+                                <li class="hover:cursor-pointer my-1 border border-gray-200 rounded-lg w-full p-1">Item 1</li>
+                                <li class="hover:cursor-pointer my-1 border border-gray-200 rounded-lg w-full p-1">Item 2</li>
+                                <li class="hover:cursor-pointer my-1 border border-gray-200 rounded-lg w-full p-1">Item 3</li>
+                                <!-- Add more list items as needed -->
+                            </ul>
+                        </div>
+
+                        <div class="">
+
+                            <button id="cleaning" class="text-gray-600 pt-2 rounded text-xl">Data Cleaning</button>
+                            <ul id="cleaningList" class="mt-1 ml-2 text-gray-500 text-lg flex flex-col gap-2">
+                                <li class="hover:cursor-pointer my-1 border border-gray-200 rounded-lg w-full p-1">Item 1</li>
+                                <li class="hover:cursor-pointer my-1 border border-gray-200 rounded-lg w-full p-1">Item 2</li>
+                                <li class="hover:cursor-pointer my-1 border border-gray-200 rounded-lg w-full p-1">Item 3</li>
+                                <!-- Add more list items as needed -->
+                            </ul>
+                        </div>
+
+                        <div class="">
+                            <button id="merging" class="text-gray-600 pt-2 rounded text-xl">Merging and Concatenating</button>
+                            <ul id="mergingList" class="mt-1 ml-2 text-gray-500 text-lg flex flex-col gap-2">
+                                <li class="hover:cursor-pointer my-1 border border-gray-200 rounded-lg w-full p-1">Item 1</li>
+                                <li class="hover:cursor-pointer my-1 border border-gray-200 rounded-lg w-full p-1">Item 2</li>
+                                <li class="hover:cursor-pointer my-1 border border-gray-200 rounded-lg w-full p-1">Item 3</li>
+                                <!-- Add more list items as needed -->
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="mt-5 w-full flex justify-center">
+                        <a href="{{ url_for('PemodelanRoutes.pemodelan')}}" class="bg-blue-500  hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">
+                            Siap untuk Pemodelan !
+                        </a>
+                    </div>
+                </div>
+
+                <div class="w-4/5">
+                    <p class="text-2xl" id="notes">Masukkan Data CSV !</p>
+
+                    <div id="result"></div>
+
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+
+    <script src="{{ url_for('static', filename='script/olahdata.js') }}"></script>
+</html>

@@ -1,0 +1,51 @@
+{% include 'head.html' %}
+    <div class="">
+        {% include 'topbar.html' %}
+
+        <main>
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-4" onclick="toggleVisualizations()">
+                Visualisasi
+            </button>
+
+            <div id="visualizationList" class="hidden">
+                    <!-- Matplotlib Visualization -->
+                <div id="matplotlib" class="bg-white p-4 mb-4 rounded shadow">
+                    <h2 class="text-xl font-bold mb-2">Matplotlib Visualization</h2>
+                    <!-- Add your Matplotlib code here -->
+                </div>
+
+                <!-- Seaborn Visualization -->
+                <div id="seaborn" class="bg-white p-4 mb-4 rounded shadow">
+                    <h2 class="text-xl font-bold mb-2">Seaborn Visualization</h2>
+                    <!-- Add your Seaborn code here -->
+                </div>
+
+                <!-- Plotly Visualization -->
+                <div id="plotly" class="bg-white p-4 mb-4 rounded shadow">
+                    <h2 class="text-xl font-bold mb-2">Plotly Visualization</h2>
+                    <!-- Add your Plotly code here -->
+                </div>
+
+                <!-- Bokeh Visualization -->
+                <div id="bokeh" class="bg-white p-4 mb-4 rounded shadow">
+                    <h2 class="text-xl font-bold mb-2">Bokeh Visualization</h2>
+                    <!-- Add your Bokeh code here -->
+                </div>
+
+                <!-- Altair Visualization -->
+                <div id="altair" class="bg-white p-4 mb-4 rounded shadow">
+                    <h2 class="text-xl font-bold mb-2">Altair Visualization</h2>
+                    <!-- Add your Altair code here -->
+                </div>
+            </div>
+
+        </main>
+    </div>
+</body>
+
+    <script>
+        function toggleVisualizations() {
+            $('#visualizationList').toggle();
+        }
+    </script>
+</html>
